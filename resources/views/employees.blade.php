@@ -4,19 +4,21 @@
 
   <h1>Employees: {{ $employees->count() }}</h1>
   <h3>With tasks:</h3>
-  @foreach ($employees as $employee)
-    <ul>
+  <ul>
+    @foreach ($employees as $employee)
       @if ($employee->tasks->count() > 0)
-        <li>{{ $employee->name }} {{ $employee->lastname }}: {{ $employee->tasks->count() }}
+        <li>
+          {{ $employee->name }} {{ $employee->lastname }}: {{ $employee->tasks->count() }}
           <ul>
             @foreach ($employee->tasks as $task)
               <li>{{ $task->id }}: {{ $task->name }}</li>
             @endforeach
           </ul>
         </li>
+        <br>
       @endif  
-    </ul>
-  @endforeach
+    @endforeach
+  </ul>
   <h3>Without tasks:</h3>
   @foreach ($employees as $employee)
     <ul>
@@ -25,5 +27,5 @@
       @endif
     </ul>
   @endforeach
-  
+
 @endsection
